@@ -1,0 +1,19 @@
+.fp__content {
+  max-height: 80%;
+}
+
+.fp__content::before {
+  content: url('../../../public/Images/LECBadge.png');
+  opacity: 0.2;
+  position: relative;
+}
+
+.fp__message {
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translatex(-50%);
+}

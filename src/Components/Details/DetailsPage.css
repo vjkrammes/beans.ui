@@ -1,0 +1,86 @@
+.detp__usercontainer {
+    margin-bottom: 1rem;
+}
+
+.detp__datastatus {
+    width: 100%;
+    text-align: right;
+    height: 1rem;
+    font-style: italic;
+    display: none;
+}
+
+.detp__nm__content {
+    position: relative;
+}
+
+.detp__nm__heading {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.detp__nm__body {
+    padding-inline: 10px;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.detp__nm__date {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.detp__nm__read {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-style: italic;
+}
+
+.detp__hc__holding {
+    display: grid;
+    grid-template-columns: 100px 100px 50px 100px;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.detp__pullright {
+    justify-self: flex-end;
+}
+
+.detp__nc__notice {
+    display: grid;
+    grid-template-columns: 100px 100px 125px 25px;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.detp__oc__offer,
+.detp__sc__sale {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+.detp__oc__offer {
+    column-gap: 5px;
+}
+
+@media screen and (min-width: 600px) {
+    .detp__datastatus {
+        display: inline-block;
+    }
+
+    .detp__oc__offer,
+    .detp__sc__sale {
+        grid-template-columns: repeat(6, 100px);
+        grid-template-rows: 1fr;
+    }
+}

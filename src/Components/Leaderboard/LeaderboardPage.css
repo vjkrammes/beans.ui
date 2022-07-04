@@ -1,0 +1,17 @@
+.lp__board .e-grid .e-rowcell,
+.lp__board .e-grid .e-headercell {
+  padding-inline: 2px !important;
+}
+
+.lp__boardlarge {
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  .lp__boardlarge {
+    display: inline-flex;
+  }
+  .lp__boardsmall {
+    display: none;
+  }
+}

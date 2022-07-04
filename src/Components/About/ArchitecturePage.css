@@ -1,0 +1,19 @@
+.arch__container {
+    overflow: auto;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.arch__header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border: 3px solid var(--black-color);
+    box-shadow: 3px 3px 5px var(--dark-color);
+}
+
+.arch__buttoncontainer {
+    margin-top: 1rem;
+    display: flex;
+    gap: 10px;
+}

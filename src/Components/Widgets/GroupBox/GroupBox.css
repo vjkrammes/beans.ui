@@ -1,0 +1,21 @@
+.grpbox__container {
+    position: relative;
+    border: 1px solid var(--black-color);
+    border-radius: 10px;
+    padding: 5px;
+    padding-top: 1rem;
+}
+
+.grpbox__label {
+    position: absolute;
+    top: -12px;
+    z-index: 10;
+    margin-inline: 10px;
+    background-color: var(--white-color);
+}
+
+@media screen and (min-width: 600px) {
+    .grpbox__container {
+        padding: 1rem;
+    }
+}

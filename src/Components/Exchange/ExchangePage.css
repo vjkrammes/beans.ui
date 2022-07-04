@@ -1,0 +1,224 @@
+.largeheading {
+  display: none;
+}
+
+.ep__heading {
+  text-align: center;
+  font-size: 125%;
+}
+
+.modal {
+  max-width: 700px;
+}
+
+.ep__modalcontent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ep__m__heading {
+  text-align: center;
+  font-weight: 700;
+  font-size: 150%;
+}
+
+.ep__m__body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ep__bsm__title {
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 3px double var(--dark-color);
+}
+
+.ep__bsm__noresults {
+  font-weight: 700;
+  text-align: center;
+  margin-block: 1rem;
+}
+
+.ep__bsm__result {
+  padding-inline: 10px;
+  display: grid;
+  grid-template-columns: 100px 100px 25px 400px;
+  grid-template-rows: 1fr;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ep__bsm__message {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 400px;
+}
+
+.ep__bc__balances,
+.ep__ex__summaries,
+.ep__hc__body,
+.ep__uc__holdings {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  row-gap: 5px;
+  padding: 1rem;
+  border: 1px solid var(--black-color);
+  border-radius: 5px;
+}
+
+.ep__bc__balances,
+.ep__ex__summaries,
+.ep__hc__body {
+  margin-bottom: 1rem;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.ep__bc__balances {
+  grid-template-columns: repeat(auto-fit, 300px);
+}
+
+.ep__bc__number {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ep__bc__number label {
+  font-style: italic;
+}
+
+.ep__bc__amount {
+  font-weight: 700;
+}
+
+.ep__ex__summaries {
+  grid-template-columns: repeat(auto-fit, 300px);
+}
+
+.ep__buysellform {
+  border: 1px solid var(--black-color);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ep__f__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-rows: auto;
+  row-gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ep__f__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ep__f__item label {
+  width: 60px;
+}
+
+.ep__f__item input {
+  max-width: 75px;
+}
+
+.ep__f__totalcontainer {
+  text-align: center;
+  font-weight: 700;
+  border-block: 1px dotted var(--base-color);
+  margin-top: 1rem;
+  padding-block: 5px;
+}
+
+.ep__noholdings {
+  font-weight: 700;
+  text-align: center;
+  padding: 1rem 2rem;
+}
+
+.ep__hc__beanselect select {
+  width: 100%;
+}
+
+.ep__hc__title {
+  text-align: center;
+  font-weight: 700;
+}
+
+.ep__hc__heading,
+.ep__hc__holding {
+  display: grid;
+  grid-template-columns: 75px 75px 75px 75px 50px;
+  grid-template-rows: auto;
+  align-items: center;
+}
+
+.ep__hc__heading {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.ep__hc__h__price,
+.ep__hc__h__quantity {
+  justify-self: flex-end;
+}
+
+.ep__hc__h__sellquantity input {
+  max-width: 50px;
+}
+
+.ep__hc__h__sellbuttoncontainer {
+  margin-top: 1rem;
+}
+
+.ep__uc__holdings {
+  grid-template-columns: repeat(auto-fill, 200px);
+}
+
+.bbw__container {
+  display: grid;
+  grid-template-columns: 25px 75px 100px;
+  grid-template-rows: 1fr;
+  align-items: center;
+}
+
+.bbw__image {
+  max-height: 20px;
+}
+
+.nosmall {
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  .smallheading {
+    display: none;
+  }
+
+  .largeheading {
+    display: inline-block;
+  }
+
+  .nolarge {
+    display: none;
+  }
+
+  .nosmall {
+    display: inline;
+  }
+}

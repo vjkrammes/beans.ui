@@ -1,0 +1,46 @@
+.oow__container {
+  border: 1px solid var(--dark-color);
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 375px;
+}
+
+.oow__title {
+  text-align: center;
+  font-weight: 700;
+  font-family: Righteous, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.oow__line {
+  display: grid;
+  grid-template-rows: 1fr;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.oow__firstline {
+  grid-template-columns: 25px 100px 220px;
+}
+
+.oow__secondline {
+  grid-template-columns: 25px 125px repeat(2, 95px);
+}
+
+.oow__offerdate {
+  justify-self: center;
+}
+
+.oow__pullright {
+  justify-self: flex-end;
+}
+
+.oow__label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.oow__label img {
+  max-width: 20px;
+}

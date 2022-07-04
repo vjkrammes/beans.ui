@@ -1,0 +1,86 @@
+.ap__bordered {
+    border: 1px solid var(--black-color);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.ap__usersheader,
+.ap__dangerheader {
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid var(--base-color);
+    font-weight: 700;
+    font-size: 125%;
+    margin-bottom: 1rem;
+}
+
+.ap__dangerheader {
+    background-color: var(--red5);
+    color: var(--yellow5);
+}
+
+.ap__truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ap__u__selectcontainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.ap__u__selectcontainer select {
+    width: 100%;
+}
+
+.ap__u__infoblock {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-template-rows: auto;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.ap__u__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ap__u__ib__label {
+    flex: 0.3;
+    font-style: italic;
+}
+
+.ap__u__ib__value {
+    flex: 0.7;
+    font-weight: 700;
+}
+
+.ap__dangerblock {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.ap__db__text {
+    font-weight: 700;
+}
+
+.ap__db__bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ap__db__resetbutton {
+    width: 150px;
+}

@@ -1,0 +1,6 @@
+.rb__container {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    align-items: center;
+}

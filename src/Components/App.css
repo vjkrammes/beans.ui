@@ -1,0 +1,499 @@
+@import '../reset.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* sans-serif */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* serif */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* monospaced */
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+/* fancy sans */
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* fancy scriptish */
+/* Syncfusion styles */
+
+@import '../../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-notifications/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+@import '../../node_modules/@syncfusion/ej2-react-grids/styles/material.css';
+
+:root {
+  /* color palettes from https://colordesigner.io */
+
+  /* blues */
+  --blue1: hsl(208 100% 17.65%);
+  --blue2: hsl(208.09 100% 27.65%);
+  --blue3: hsl(207.93 100% 42.55%);
+  --blue4: hsl(208.03 66.67% 55.29%);
+  --blue5: hsl(208 82.19% 71.37%);
+
+  /* purples */
+  --purple1: hsl(266.57 85.37% 16.08%);
+  --purple2: hsl(266.2 60.68% 22.94%);
+  --purple3: hsl(265.3 45.36% 35.88%);
+  --purple4: hsl(267.64 35.18% 49.61%);
+  --purple5: hsl(266.86 53.3% 61.37%);
+
+  /* hot purples */
+  --hot-purple1: hsl(300.94 100% 24.9%);
+  --hot-purple2: hsl(300.67 53.94% 32.35%);
+  --hot-purple3: hsl(300.88 100% 40%);
+  --hot-purple4: hsl(300.94 100% 50%);
+  --hot-purple5: hsl(301.01 100% 64.9%);
+
+  /* reds */
+  --red1: hsl(357.39 100% 13.53%);
+  --red2: hsl(358.7 100% 18.04%);
+  --red3: hsl(358.27 88.54% 30.78%);
+  --red4: hsl(358.49 88.44% 44.12%);
+  --red5: hsl(358.41 100% 55.69%);
+
+  /* greens */
+  --green1: hsl(164.21 100% 7.45%);
+  --green2: hsl(150.41 90.12% 15.88%);
+  --green3: hsl(139.81 70.67% 29.41%);
+  --green4: hsl(127.87 48.8% 50.98%);
+  --green5: hsl(112.2 73.53% 73.33%);
+
+  /* yellows */
+  --yellow1: hsl(35.95 100% 53.53%);
+  --yellow2: hsl(40.09 100% 53.92%);
+  --yellow3: hsl(45.06 100% 53.53%);
+  --yellow4: hsl(49.11 100% 53.53%);
+  --yellow5: hsl(54.13 100% 53.92%);
+
+  /* grays */
+  --gray1: hsl(0 0% 16.86%);
+  --gray2: hsl(0 0% 23.14%);
+  --gray3: hsl(0 0% 43.92%);
+  --gray4: hsl(0 0% 58.82%);
+  --gray5: hsl(0 0% 72.94%);
+  --gray6: hsl(0 0% 80%);
+
+  /* base color palette */
+
+  --base-color: var(--green3);
+  --light-accent-color: var(--green4);
+  --dark-accent-color: var(--green2);
+  --dark-color: var(--green1);
+  --light-color: var(--green5);
+  --black-color: hsl(164 100% 5.88%);
+  --white-color: hsl(164.65 100% 94%);
+
+  /* colors for buttons */
+
+  --primarybutton-background: var(--green2);
+  --primarybutton-color: var(--white-color);
+  --primarybutton-hover-background: var(--green4);
+  --primarybutton-hover-color: var(--black-color);
+
+  --secondarybutton-background: var(--green4);
+  --secondarybutton-color: var(--black-color);
+  --secondarybutton-hover-background: var(--green2);
+  --secondarybutton-hover-color: var(--white-color);
+
+  /* price colors */
+
+  --positive-color: var(--green4);
+  --negative-color: var(--red4);
+
+  /* miscellaneous colors */
+
+  --error-color: var(--red5);
+  --warning-color: var(--yellow4);
+  --success-color: var(--green5);
+  --danger-color: var(--red4);
+
+  --font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-size: '16px';
+}
+
+html,
+body {
+  font-family: var(--font-family);
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--white-color);
+  position: relative;
+}
+
+header,
+footer {
+  position: fixed;
+  width: 100%;
+  background-color: var(--light-color);
+  color: var(--black-color);
+}
+
+header {
+  height: 4rem;
+  top: 0;
+}
+
+footer {
+  height: 2rem;
+  bottom: 0;
+}
+
+main {
+  position: absolute;
+  top: 4rem;
+  bottom: 2rem;
+  width: 100%;
+  overflow: auto;
+}
+
+/* global class styles */
+
+.theexchange {
+  font-family: Righteous, Roboto, 'Helveitica Neue', Arial, sans-serif;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.spread-row {
+  justify-content: space-between;
+}
+
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.header {
+  border: 3px solid var(--dark-color);
+  margin: 1rem 10px;
+  box-shadow: 3px 3px 5px var(--base-color);
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-rows: 1fr;
+  overflow: hidden;
+}
+
+.heading {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  font-size: 150%;
+  grid-column: 1 / 11;
+  grid-row: 1 / 1;
+}
+
+.loading {
+  margin-block: 5rem;
+  text-align: center;
+}
+
+.modal {
+  border: 3px solid var(--black-color);
+  border-radius: 10px;
+  box-shadow: 5px 5px 7px var(--dark-color);
+  padding: 1rem;
+  width: 100%;
+}
+
+.modal::backdrop {
+  background-color: rgba(9, 51, 23, 0.25);
+}
+
+.buttoncontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.content {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.noitemsfound {
+  text-align: center;
+  font-weight: 700;
+  border: 3px solid var(--base-color);
+  border-radius: 5px;
+  padding: 1rem 0;
+  margin: 4rem auto;
+  box-shadow: 5px 5px 7px var(--dark-color);
+  width: 100%;
+  max-width: 800px;
+  font-size: 150%;
+}
+
+/* pager styles */
+
+.pager__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: var(--light-accent-color);
+  padding: 5px;
+}
+
+.pager__pager {
+  font-style: italic;
+  font-size: 0.75rem;
+}
+
+.pager__content {
+  flex: 1;
+}
+
+.pager__resetbutton,
+.pager__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 5px;
+  border: 1px solid var(--black-color);
+  border-radius: 5px;
+  background-color: var(--dark-color);
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.pager__resetbutton:hover,
+.pager__button:hover {
+  background-color: var(--light-color);
+  color: var(--black-color);
+}
+
+.pager__resetbutton:disabled,
+.pager__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pager__resetbutton span,
+.pager__button span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pager__resetbutton {
+  padding: 0;
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
+/* form controls */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-outline {
+  border: 1px solid var(--dark-color);
+  padding: 10px;
+}
+
+.formitem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.formlabel {
+  font-weight: 700;
+}
+
+.forminput:not([type='checkbox']) {
+  flex: 1;
+}
+
+.forminput[type='checkbox'] {
+  max-width: 16px;
+  margin-inline: 0;
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* buttons */
+
+.squarebutton {
+  border: 1px solid var(--black-color);
+  border-radius: 5px;
+  height: 1.25rem;
+  width: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-color);
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.squarebutton span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 600px) {
+  .squarebutton {
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+}
+
+.squarebutton:hover {
+  background-color: var(--light-color);
+  color: var(--black-color);
+}
+
+.squarebutton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.squarebutton span {
+  align-self: center;
+  justify-self: center;
+}
+
+.primarybutton,
+.secondarybutton {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  padding: 3px 5px;
+  cursor: pointer;
+  text-decoration: none;
+  align-self: center;
+  min-width: 80px;
+}
+
+.primarybutton span,
+.secondarybutton span {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.primarybutton {
+  background-color: var(--primarybutton-background);
+  color: var(--primarybutton-color);
+}
+
+.primarybutton:hover {
+  background-color: var(--primarybutton-hover-background);
+  color: var(--primarybutton-hover-color);
+}
+
+.primarybutton:disabled,
+.secondarybutton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.secondarybutton {
+  background-color: var(--secondarybutton-background);
+  color: var(--secondarybutton-color);
+}
+
+.secondarybutton:hover {
+  background-color: var(--secondarybutton-hover-background);
+  color: var(--secondarybutton-hover-color);
+}
+
+.dangerbutton {
+  background-color: var(--red5);
+  color: black;
+}
+
+.dangerbutton:hover {
+  background-color: var(--red3);
+  color: white;
+}
+
+.dangerbutton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.headerfooterbutton {
+  flex: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 85px;
+  padding: 3px 5px;
+  height: 90%;
+  max-height: 90%;
+  border: 1px solid var(--black-color);
+  border-radius: 5px;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  line-height: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.headerfooterbutton:hover {
+  background-color: var(--light-accent-color);
+  color: var(--black-color);
+}
+
+.headerfooterbutton span {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerbutton-left {
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+  margin-left: 10px;
+  justify-self: flex-start;
+}
+
+.headerbutton-right {
+  grid-row: 1 / 1;
+  grid-column: 10 / 10;
+  margin-right: 10px;
+  justify-self: flex-end;
+}
+
+/* miscellaneous */
+
+.redstar {
+  color: var(--danger-color);
+  vertical-align: super;
+  font-size: 75%;
+}

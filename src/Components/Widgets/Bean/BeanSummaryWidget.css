@@ -1,0 +1,27 @@
+.bsw__container {
+    display: grid;
+    grid-template-columns: 25px 75px 75px 125px;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'icon name held cost';
+    align-items: center;
+}
+
+.bsw__image {
+    max-width: 20px;
+    grid-area: icon;
+}
+
+.bsw__name {
+    grid-area: name;
+}
+
+.bsw__held {
+    grid-area: held;
+    justify-self: flex-end;
+}
+
+.bsw__price {
+    grid-area: cost;
+    justify-self: flex-end;
+    text-align: right;
+}

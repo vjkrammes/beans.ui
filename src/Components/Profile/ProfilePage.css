@@ -1,0 +1,32 @@
+.prof__email {
+    font-weight: 700;
+    font-style: italic;
+}
+
+.prof__headitem {
+    margin-bottom: 1rem;
+    border-bottom: 1px dotted var(--base-color);
+}
+
+.formlabel {
+    width: 100px;
+}
+
+.prof__modalcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prof__modaltitle {
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: 3px double var(--dark-color);
+}
+
+.prof__modalmessage {
+    font-style: italic;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,66 @@
+.notw__body {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: 
+        'date date send send send send send send send read'
+        'btns btns titl titl titl titl titl titl titl titl'
+        '.... .... ntxt ntxt ntxt ntxt ntxt ntxt ntxt ntxt';
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.notw__date {
+    grid-area: date;
+    font-size: 75%;
+}
+
+.notw__sender {
+    grid-area: send;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.notw__readindicator {
+    grid-area: read;
+}
+
+.notw__buttons {
+    grid-area: btns;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notw__buttons button span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notw__title {
+    grid-area: titl;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.notw__text {
+    grid-area: ntxt;
+    font-style: italic;
+}
+
+@media screen and (min-width: 600px) {
+    .notw__body {
+        grid-template-areas: 
+            'date date send send titl titl titl titl read btns'
+            '.... .... ntxt ntxt ntxt ntxt ntxt ntxt ntxt ntxt'
+    }
+    
+    .notw__date {
+        font-size: 100%;
+    }
+}

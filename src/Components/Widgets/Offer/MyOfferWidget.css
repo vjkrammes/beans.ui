@@ -1,0 +1,45 @@
+.mow__container {
+  border: 1px solid var(--dark-color);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.mow__title {
+  text-align: center;
+  font-weight: 700;
+  font-family: Righteous, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.mow__line {
+  display: grid;
+  grid-template-columns: 25px 100px 100px 100px;
+  grid-template-rows: 1fr;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.mow__offerdate {
+  justify-self: center;
+}
+
+.mow__pullright {
+  justify-self: flex-end;
+}
+
+.mow__label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.mow__label img {
+  max-width: 20px;
+}
+
+.mow__noholdings {
+  text-align: center;
+  font-style: italic;
+  font-size: 75%;
+  line-height: 1.5rem;
+}

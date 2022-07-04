@@ -1,0 +1,39 @@
+.shwidget__container {
+  margin-bottom: 1rem;
+}
+
+.mirrorimage svg {
+  transform: scale(-1, 1);
+  transform-origin: center;
+}
+
+.pullright {
+  justify-self: flex-end;
+}
+
+.shwidget__item {
+  display: grid;
+  grid-template-columns: 20px 20px 50px 75px 25px 90px 50px;
+  grid-template-rows: 1fr;
+  column-gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 600px) {
+  .shwidget__item {
+    grid-template-columns: 20px 25px 100px 100px 50px 125px 100px;
+  }
+}
+
+.shwidget__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 5px;
+}
+
+.shwidget__date {
+  justify-self: center;
+}
