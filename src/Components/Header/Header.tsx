@@ -9,6 +9,7 @@ import {
   MdOutlineStickyNote2,
   MdSettings,
   MdLeaderboard,
+  MdOutlineAccountBox,
 } from 'react-icons/md';
 import { FaExchangeAlt, FaUserSecret } from 'react-icons/fa';
 import { useUser } from '../../Contexts/UserContext';
@@ -94,6 +95,15 @@ export default function Header() {
             <button
               type="button"
               className="squarebutton"
+              onClick={() => navigate('/Account')}
+            >
+              <span>
+                <MdOutlineAccountBox />
+              </span>
+            </button>
+            <button
+              type="button"
+              className="squarebutton"
               onClick={() => navigate('/Holdings')}
             >
               <span>
@@ -149,6 +159,15 @@ export default function Header() {
             )}
           </div>
           <div className="h__largebuttoncontainer">
+            <button
+              type="button"
+              className="headerfooterbutton"
+              onClick={() => navigate('/Account')}
+            >
+              <span>
+                <MdOutlineAccountBox /> Account
+              </span>
+            </button>
             <button
               type="button"
               className="headerfooterbutton"

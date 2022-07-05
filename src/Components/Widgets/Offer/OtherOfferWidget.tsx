@@ -2,6 +2,7 @@ import { MouseEvent, useState, useEffect } from 'react';
 import { MdCheck } from 'react-icons/md';
 import { IOfferModel } from '../../../Interfaces/IOfferModel';
 import { toCurrency } from '../../../Services/tools';
+import { displayDate } from '../../../Services/tools';
 import './OtherOfferWidget.css';
 
 type Props = {
@@ -25,9 +26,6 @@ export default function OtherOfferWidget({
       }
     }
   }, [offer]);
-  function displayDate(date: Date): string {
-    return new Date(date).toISOString().split('T')[0];
-  }
   function buySellClick(e: MouseEvent<HTMLButtonElement>) {
     e.stopPropagation();
     onBuySell(offer);

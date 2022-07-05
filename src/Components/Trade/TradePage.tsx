@@ -22,6 +22,7 @@ import {
 import { getUserHoldings } from '../../Services/HoldingService';
 import { toCurrency } from '../../Services/tools';
 import { isSuccessResult } from '../../Interfaces/IApiResponse';
+import { displayDate } from '../../Services/tools';
 import BeanSelector from '../Widgets/Bean/BeanSelector';
 import HideWidget from '../Widgets/Hide/HideWidget';
 import MyOfferWidget from '../Widgets/Offer/MyOfferWidget';
@@ -354,9 +355,6 @@ export default function TradePage() {
         }
       }
     }
-  }
-  function displayDate(date: Date): string {
-    return new Date(date).toISOString().split('T')[0];
   }
   function atLeastOneSelected() {
     if (!candidates || candidates.length === 0) {

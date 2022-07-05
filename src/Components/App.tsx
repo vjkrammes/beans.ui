@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 // pages
 import AboutPage from './About/AboutPage';
+import AccountPage from './Account/AccountPage';
 import AdminPage from './Admin/AdminPage';
 import ArchitecturePage from './About/ArchitecturePage';
 import BeanDetailsPage from './BeanDetails/BeanDetailsPage';
@@ -60,6 +61,7 @@ export default function App() {
                     <Route path="" element={<HomePage />} />
                     <Route path="/" element={<HomePage />} />
                     <Route path="/About" element={<AboutPage />} />
+                    <Route path="/Account" element={<AccountPage />} />
                     <Route
                       path="/Admin"
                       element={

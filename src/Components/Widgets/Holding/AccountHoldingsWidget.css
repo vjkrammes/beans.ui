@@ -1,0 +1,44 @@
+.ahw__noholdings {
+  text-transform: uppercase;
+  text-align: center;
+  margin-block: 2rem;
+  font-weight: 700;
+}
+
+.ahw__holdings {
+  border: 1px solid var(--black-color);
+  border-radius: 5px;
+}
+
+.ahw__holding {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-rows: auto;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  row-gap: 5px;
+  padding-bottom: 1rem;
+  border-bottom: 1px dotted var(--dark-color);
+  margin-top: 1rem;
+}
+
+.ahw__holding:last-of-type {
+  border-bottom: none;
+}
+
+.ahw__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ahw__item label {
+  font-style: italic;
+}
+
+.ahw__value {
+  font-weight: 700;
+}

@@ -1,0 +1,28 @@
+.bwidget__balances {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-rows: auto;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  row-gap: 5px;
+  padding: 1rem;
+  border: 1px solid var(--black-color);
+  border-radius: 5px;
+}
+
+.bwidget__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bwidget__item label {
+  font-style: italic;
+}
+
+.bwidget__amount {
+  font-weight: 700;
+}

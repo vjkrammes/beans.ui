@@ -1,0 +1,44 @@
+.asw__nosales {
+  text-transform: uppercase;
+  text-align: center;
+  margin-block: 2rem;
+  font-weight: 700;
+}
+
+.asw__sales {
+  border: 1px solid var(--black-color);
+  border-radius: 5px;
+}
+
+.asw__sale {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-rows: auto;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  row-gap: 5px;
+  padding-bottom: 1rem;
+  border-bottom: 1px dotted var(--dark-color);
+  margin-top: 1rem;
+}
+
+.asw__sale:last-of-type {
+  border-bottom: none;
+}
+
+.asw__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.asw__item label {
+  font-style: italic;
+}
+
+.asw__value {
+  font-weight: 700;
+}

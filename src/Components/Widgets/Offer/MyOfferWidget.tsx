@@ -2,6 +2,7 @@ import { MouseEvent } from 'react';
 import { MdDelete } from 'react-icons/md';
 import { IOfferModel } from '../../../Interfaces/IOfferModel';
 import { toCurrency } from '../../../Services/tools';
+import { displayDate } from '../../../Services/tools';
 import GainLossBadge from '../Badges/GainLossBadge';
 import './MyOfferWidget.css';
 
@@ -18,9 +19,6 @@ export default function MyOfferWidget({
   onClick,
   doStatus,
 }: Props) {
-  function displayDate(date: Date): string {
-    return new Date(date).toISOString().split('T')[0];
-  }
   function computeGain(): number {
     const basis = offer.holding!.price;
     const current = offer.bean!.price;
