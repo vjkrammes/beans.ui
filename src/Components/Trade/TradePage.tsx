@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useUser } from '../../Contexts/UserContext';
 import { useAlert } from '../../Contexts/AlertContext';
+import { useNotice } from '../../Contexts/NoticeCountContext';
 import { MdCancel, MdCheck } from 'react-icons/md';
 import { FaPlus } from 'react-icons/fa';
 import { IOfferModel } from '../../Interfaces/IOfferModel';
@@ -16,6 +17,7 @@ import {
   updateOffer,
   deleteOffer,
   buyFromOffer,
+  sellToOffer,
 } from '../../Services/OfferService';
 import { getUserHoldings } from '../../Services/HoldingService';
 import { toCurrency } from '../../Services/tools';
@@ -25,9 +27,10 @@ import HideWidget from '../Widgets/Hide/HideWidget';
 import MyOfferWidget from '../Widgets/Offer/MyOfferWidget';
 import OtherOfferWidget from '../Widgets/Offer/OtherOfferWidget';
 import PageHeader from '../Widgets/Page/PageHeader';
-import Spinner from '../Widgets/Spinner/Spinner';
-import './TradePage.css';
 import SellHoldingWidget from '../Widgets/Holding/SellHoldingWidget';
+import Spinner from '../Widgets/Spinner/Spinner';
+import { ISellToOfferModel } from '../../Interfaces/ISellToOfferModel';
+import './TradePage.css';
 
 type FormData = {
   id: string;
@@ -63,6 +66,7 @@ export default function TradePage() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const { user } = useUser();
   const { setAlert } = useAlert();
+  const { updateUnread } = useNotice();
   const navigate = useNavigate();
   const { register, handleSubmit, reset, watch } = useForm<FormData>({
     mode: 'onBlur',
@@ -284,7 +288,7 @@ export default function TradePage() {
     }
     let sum = 0;
     h.forEach((x) => (sum += x.quantity));
-    return sum > offer.quantity;
+    return sum >= offer.quantity;
   }
   function userCanAfford(offer: IOfferModel): boolean {
     const price = offer.quantity * offer.price;
@@ -319,7 +323,7 @@ export default function TradePage() {
       setAlert(response.message, 'error', 5000);
     } else {
       setSelectedOffer(offer);
-      const h = holdings.filter((x) => x.id === offer.beanId);
+      const h = holdings.filter((x) => x.beanId === offer.beanId);
       if (!h || h.length === 0) {
         setAlert(
           'You have insufficient beans to fulfill that offer',
@@ -329,10 +333,10 @@ export default function TradePage() {
         return;
       }
       const c: IHoldingCandidate[] = [];
-      h.map((x, i) =>
+      h.map((x) =>
         c.push({
+          holdingId: x.id,
           selected: false,
-          order: i + 1,
           purchaseDate: new Date(x.purchaseDate),
           quantity: x.quantity,
           purchasePrice: x.price,
@@ -372,6 +376,37 @@ export default function TradePage() {
     });
     setOneSelected(sel);
     setSomeBeans(some);
+  }
+  async function sellClick() {
+    if (selectedOffer) {
+      const model: ISellToOfferModel = {
+        offerId: selectedOffer!.id,
+        sellerId: user!.id,
+        items: [],
+      };
+      for (let i = 0; i < candidates.length; i++) {
+        if (candidates[i].selected && candidates[i].sellQuantity > 0) {
+          model.items.push({
+            holdingId: candidates[i].holdingId,
+            quantity: candidates[i].sellQuantity,
+          });
+        }
+      }
+      if (model.items.length === 0) {
+        setAlert('No candidates selected', 'error', 5000);
+      } else {
+        const result = await sellToOffer(model, await getAccessTokenSilently());
+        if (isSuccessResult(result)) {
+          await doLoadOffers();
+          updateUnread();
+          setAlert('Beans sold successfully', 'info');
+          return;
+        }
+        setAlert(result.message, 'error', 5000);
+      }
+    } else {
+      setAlert('No offer selected', 'error', 5000);
+    }
   }
   function cancelSell() {
     const modal = document.getElementById('tp__sellmodal');
@@ -509,6 +544,11 @@ export default function TradePage() {
               {toCurrency(selectedOffer?.price || 0)}
             </div>
           </div>
+          <div className="tp__sm__warning">
+            <span className="emphasize">Warning:&nbsp;</span>There is no
+            guarantee on the order in which holdings will be sold. If you want
+            holdings sold in a specific order, sell them individually.
+          </div>
           <div className="tp__sm__title">Your Holdings</div>
           {(!candidates || candidates.length === 0) && (
             <div className="tp__sm__noholdings">
@@ -519,9 +559,6 @@ export default function TradePage() {
             <div className="tp__sm__holdingcontainer">
               <SellHoldingWidget
                 candidates={candidates}
-                offer={selectedOffer!}
-                okClick={() => {}}
-                cancelClick={() => {}}
                 selectClicked={(candidate: IHoldingCandidate) => {
                   atLeastOneSelected();
                 }}
@@ -532,7 +569,7 @@ export default function TradePage() {
             <button
               type="button"
               className="primarybutton"
-              onClick={() => {}}
+              onClick={sellClick}
               disabled={!oneSelected || !someBeans}
             >
               <span>

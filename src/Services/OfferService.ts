@@ -1,5 +1,6 @@
 import { IApiResponse } from '../Interfaces/IApiResponse';
 import { IOfferModel } from '../Interfaces/IOfferModel';
+import { ISellToOfferModel } from '../Interfaces/ISellToOfferModel';
 import { http } from './http';
 import { createApiResponse } from './tools';
 
@@ -95,6 +96,19 @@ export async function buyFromOffer(
   const response = await http<IApiResponse>({
     path: `/Offer/Buy/${userid}/${quantity}/${offerid}`,
     method: 'post',
+    token: token,
+  });
+  return createApiResponse(response);
+}
+
+export async function sellToOffer(
+  model: ISellToOfferModel,
+  token: string,
+): Promise<IApiResponse> {
+  const response = await http<IApiResponse, ISellToOfferModel>({
+    path: '/Offer/Sell',
+    method: 'post',
+    body: model,
     token: token,
   });
   return createApiResponse(response);

@@ -7,33 +7,24 @@
   transform-origin: center;
 }
 
-.pullright {
+.shwidget__pullright {
   justify-self: flex-end;
 }
 
+.shwidget__pullcenter {
+  justify-self: center;
+}
+
+.shwidget__heading,
 .shwidget__item {
   display: grid;
-  grid-template-columns: 20px 20px 50px 75px 25px 90px 50px;
+  grid-template-columns: 20px 125px 25px 100px 50px;
   grid-template-rows: 1fr;
   column-gap: 5px;
   align-items: center;
   justify-content: center;
 }
 
-@media screen and (min-width: 600px) {
-  .shwidget__item {
-    grid-template-columns: 20px 25px 100px 100px 50px 125px 100px;
-  }
-}
-
-.shwidget__buttons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 5px;
-}
-
-.shwidget__date {
-  justify-self: center;
+.shwidget__small {
+  font-size: 75%;
 }

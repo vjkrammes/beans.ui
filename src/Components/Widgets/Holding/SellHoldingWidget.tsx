@@ -1,24 +1,17 @@
 import { ChangeEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { BsArrow90DegUp, BsArrow90DegDown } from 'react-icons/bs';
+import { MdCheck } from 'react-icons/md';
 import { IHoldingCandidate } from '../../../Interfaces/IHoldingCandidate';
-import { IOfferModel } from '../../../Interfaces/IOfferModel';
-import './SellHoldingWidget.css';
 import { toCurrency } from '../../../Services/tools';
+import './SellHoldingWidget.css';
 
 type Props = {
   candidates: IHoldingCandidate[];
-  offer: IOfferModel;
-  okClick: () => void;
-  cancelClick: () => void;
   selectClicked: (candidate: IHoldingCandidate) => void;
 };
 
 export default function SellHoldingWidget({
   candidates,
-  offer,
-  okClick,
-  cancelClick,
   selectClicked,
 }: Props) {
   function selectChanged(
@@ -26,23 +19,38 @@ export default function SellHoldingWidget({
     candidate: IHoldingCandidate,
   ) {
     candidate.selected = !candidate.selected;
+    if (!candidate.selected) {
+      candidate.sellQuantity = 0;
+    }
     selectClicked(candidate);
   }
   function sellQuantityChanged(
     e: ChangeEvent<HTMLInputElement>,
-    c: IHoldingCandidate,
+    candidate: IHoldingCandidate,
   ) {
-    console.dir(e);
-    console.dir(c);
-    if (e && e.target && e.target.value && c) {
+    if (e && e.target && e.target.value && candidate) {
       const num = Number(e.target.value);
-      c.sellQuantity = num;
+      candidate.sellQuantity = num;
+      selectClicked(candidate);
     }
   }
   return (
     <div className="shwidget__container">
       {(!candidates || candidates.length === 0) && (
         <div className="shwidget__nocandidates">No Candidates Found</div>
+      )}
+      {candidates && candidates.length > 0 && (
+        <div className="shwidget__heading">
+          <MdCheck />
+          <div className="shwidget__small shwidget__pullcenter">
+            Purchase Date
+          </div>
+          <div className="shwidget__small shwidget__pullright">Qty</div>
+          <div className="shwidget__small shwidget__pullright">
+            Purchase Price
+          </div>
+          <div className="shwidget__small shwidget__pullcenter">Sell</div>
+        </div>
       )}
       {candidates &&
         candidates.length > 0 &&
@@ -56,37 +64,16 @@ export default function SellHoldingWidget({
                 onChange={(e) => selectChanged(e, x)}
               />
             </div>
-            <div className="shwidget__order">
-              <div className="shwidget__order">{x.order}</div>
-            </div>
-            <div className="shwidget__buttons">
-              <button
-                className="squarebutton mirrorimage"
-                onClick={() => {}}
-                disabled={x.order <= 1}
-              >
-                <span>
-                  <BsArrow90DegUp />
-                </span>
-              </button>
-              <button
-                className="squarebutton mirrorimage"
-                onClick={() => {}}
-                disabled={x.order >= candidates.length}
-              >
-                <span>
-                  <BsArrow90DegDown />
-                </span>
-              </button>
-            </div>
-            <div className="shwidget__date">
+            <div className="shwidget__date shwidget__pullcenter">
               {new Date(x.purchaseDate)
                 .toISOString()
                 .split('T')[0]
                 .substring(2)}
             </div>
-            <div className="shwidget__quantity pullright">{x.quantity}</div>
-            <div className="shwidget__price pullright">
+            <div className="shwidget__quantity shwidget__pullright">
+              {x.quantity}
+            </div>
+            <div className="shwidget__price shwidget__pullright">
               {toCurrency(x.purchasePrice)}
             </div>
             <input

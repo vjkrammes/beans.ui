@@ -1,6 +1,6 @@
 export interface IHoldingCandidate {
+  holdingId: string;
   selected: boolean;
-  order: number;
   purchaseDate: Date;
   quantity: number;
   purchasePrice: number;
