@@ -9,7 +9,7 @@ import {
 } from '@syncfusion/ej2-react-grids';
 import { ILeaderboardEntry } from '../../Interfaces/ILeaderboardEntry';
 import { getLeaderboard } from '../../Services/UserService';
-import { toCurrency, toSignedCurrency } from '../../Services/tools';
+import { toSignedCurrency } from '../../Services/tools';
 import GainLossBadge from '../Widgets/Badges/GainLossBadge';
 import PageHeader from '../Widgets/Page/PageHeader';
 import Spinner from '../Widgets/Spinner/Spinner';
@@ -27,28 +27,31 @@ export default function LeaderboardPage() {
     }
     doLoadEntries();
   }, []);
-  function moneyTemplate(value: number) {
-    return toCurrency(value);
-  }
-  function basisTemplate(props: ILeaderboardEntry) {
-    return <span>{moneyTemplate(props.basis)}</span>;
-  }
-  function valueTemplate(props: ILeaderboardEntry) {
-    return <span>{moneyTemplate(props.value)}</span>;
-  }
   function gainTemplate(props: ILeaderboardEntry) {
     return <span>{toSignedCurrency(props.gainOrLoss)}</span>;
   }
-  function changeTemplate(props: ILeaderboardEntry) {
+  function salesGainTemplate(props: ILeaderboardEntry) {
+    return <span>{toSignedCurrency(props.salesGainOrLoss)}</span>;
+  }
+  function makeChangeTemplate(value: number) {
     return (
       <GainLossBadge
-        value={props.change}
+        value={value}
         decimals={2}
         greenColor="var(--green4)"
         redColor="var(--red3)"
         postfix="%"
       />
     );
+  }
+  function changeTemplate(props: ILeaderboardEntry) {
+    return makeChangeTemplate(props.change);
+  }
+  function salesChangeTemplate(props: ILeaderboardEntry) {
+    return makeChangeTemplate(props.salesChange);
+  }
+  function scoreTemplate(props: ILeaderboardEntry) {
+    return props.score.toFixed(4);
   }
   return (
     <div className="container">
@@ -76,7 +79,7 @@ export default function LeaderboardPage() {
                   sortSettings={{
                     columns: [
                       {
-                        field: 'change',
+                        field: 'score',
                         direction: 'Descending',
                       },
                     ],
@@ -91,28 +94,8 @@ export default function LeaderboardPage() {
                     />
                     <ColumnDirective
                       width="75"
-                      field="quantity"
-                      headerText="No. Beans"
-                      allowSorting={true}
-                    />
-                    <ColumnDirective
-                      width="75"
-                      field="cost"
-                      headerText="Cost"
-                      template={basisTemplate}
-                      allowSorting={true}
-                    />
-                    <ColumnDirective
-                      width="75"
-                      field="value"
-                      headerText="Value"
-                      template={valueTemplate}
-                      allowSorting={true}
-                    />
-                    <ColumnDirective
-                      width="75"
                       field="gainOrLoss"
-                      headerText="Gain/Loss"
+                      headerText="Gain"
                       template={gainTemplate}
                       allowSorting={true}
                     />
@@ -121,6 +104,27 @@ export default function LeaderboardPage() {
                       field="change"
                       headerText="Change"
                       template={changeTemplate}
+                      allowSorting={true}
+                    />
+                    <ColumnDirective
+                      width="75"
+                      field="salesGainOrLoss"
+                      headerText="Sale Gain"
+                      template={salesGainTemplate}
+                      allowSorting={true}
+                    />
+                    <ColumnDirective
+                      width="75"
+                      field="salesChange"
+                      headerText="Sale Change"
+                      template={salesChangeTemplate}
+                      allowSorting={true}
+                    />
+                    <ColumnDirective
+                      width="75"
+                      field="score"
+                      headerText="Score"
+                      template={scoreTemplate}
                       allowSorting={true}
                     />
                   </ColumnsDirective>
@@ -138,7 +142,7 @@ export default function LeaderboardPage() {
                   sortSettings={{
                     columns: [
                       {
-                        field: 'change',
+                        field: 'score',
                         direction: 'Descending',
                       },
                     ],
@@ -153,23 +157,23 @@ export default function LeaderboardPage() {
                     />
                     <ColumnDirective
                       width="75"
-                      field="cost"
-                      headerText="Cost"
-                      template={basisTemplate}
-                      allowSorting={true}
-                    />
-                    <ColumnDirective
-                      width="75"
-                      field="value"
-                      headerText="Value"
-                      template={valueTemplate}
-                      allowSorting={true}
-                    />
-                    <ColumnDirective
-                      width="75"
                       field="change"
                       headerText="Change"
                       template={changeTemplate}
+                      allowSorting={true}
+                    />
+                    <ColumnDirective
+                      width="75"
+                      field="salesChange"
+                      headerText="Sale Change"
+                      template={salesChangeTemplate}
+                      allowSorting={true}
+                    />
+                    <ColumnDirective
+                      width="75"
+                      field="score"
+                      headerText="Score"
+                      template={scoreTemplate}
                       allowSorting={true}
                     />
                   </ColumnsDirective>

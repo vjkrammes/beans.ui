@@ -6,4 +6,9 @@ export interface ILeaderboardEntry {
   value: number;
   gainOrLoss: number;
   change: number;
+  salesBasis: number;
+  salesTotal: number;
+  salesGainOrLoss: number;
+  salesChange: number;
+  score: number;
 }
