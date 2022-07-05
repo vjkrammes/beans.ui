@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaScroll } from 'react-icons/fa';
 import { IBeanHistoryModel } from '../../Interfaces/IBeanHistoryModel';
-import { getAllBeanHistory } from '../../Services/BeanService';
 import { IMovementModel } from '../../Interfaces/IMovementModel';
+import { getAllBeanHistory } from '../../Services/BeanService';
 import { getTicker } from '../../Services/MovementService';
 import { prefersReducedMotion } from '../../Services/tools';
 import BeanChartWidget from '../Widgets/Bean/BeanChartWidget';
 import Marquee from '../Widgets/Marquee/Marquee';
-import './HomePage.css';
 import PageHeader from '../Widgets/Page/PageHeader';
+import './HomePage.css';
 
 export default function HomePage() {
   const [history, setHistory] = useState<IBeanHistoryModel[]>([]);
@@ -40,12 +41,32 @@ export default function HomePage() {
 
   return (
     <div className="container">
-      {showMarquee && !prefersReducedMotion() && (
+      {prefersReducedMotion() && (
+        <PageHeader heading="Beans Home" showHomeButton={false} />
+      )}
+      {!prefersReducedMotion() && showMarquee && (
         <PageHeader
           heading={
             <Marquee ticker={ticker} onStopScrolling={onStopScrolling} />
           }
           showHomeButton={false}
+        />
+      )}
+      {!prefersReducedMotion() && !showMarquee && (
+        <PageHeader
+          heading="Beans Home"
+          showHomeButton={false}
+          secondButton={
+            <button
+              type="button"
+              className="primarybutton headerbutton-left"
+              onClick={() => setShowMarquee(true)}
+            >
+              <span>
+                <FaScroll /> Show Ticker
+              </span>
+            </button>
+          }
         />
       )}
       <div className="content">
