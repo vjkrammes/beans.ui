@@ -153,7 +153,7 @@ export default function TradePage() {
     const sb: string[] = [];
     sb.push(holding.quantity.toLocaleString());
     sb.push(holding.bean!.name);
-    sb.push('beans purchased on');
+    sb.push('bean(s) purchased on');
     sb.push(new Date(holding.purchaseDate).toLocaleDateString());
     sb.push('for');
     sb.push(toCurrency(holding.price));
@@ -399,7 +399,7 @@ export default function TradePage() {
         if (isSuccessResult(result)) {
           await doLoadOffers();
           updateUnread();
-          setAlert('Beans sold successfully', 'info');
+          setAlert('Bean(s) sold successfully', 'info');
           return;
         }
         setAlert(result.message, 'error', 5000);
