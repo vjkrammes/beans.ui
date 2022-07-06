@@ -121,6 +121,8 @@ export default function AccountPage() {
         <div className="content ap__content">
           <BalancesWidget
             user={user!}
+            holdings={holdings}
+            sales={sales}
             heading={
               <div className="ap__center ap__larger theexchange">
                 Your Balances
