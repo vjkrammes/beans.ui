@@ -58,3 +58,7 @@ For the Web Sites, the following NPM packages:
 3.  [Syncfusion](https://syncfusion.com) used for Charts, Grids and Notifications badges
 4. *@auth0/auth0-react*, used to interact with Auth0
 5. *uuid*, used to generate uuids
+
+For the Background Function:
+
+1. [Serilog](https://serilog.net/) used for logging to Azure blob storage
