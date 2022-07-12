@@ -9,9 +9,11 @@ import { prefersReducedMotion } from '../../Services/tools';
 import BeanChartWidget from '../Widgets/Bean/BeanChartWidget';
 import Marquee from '../Widgets/Marquee/Marquee';
 import PageHeader from '../Widgets/Page/PageHeader';
+import Spinner from '../Widgets/Spinner/Spinner';
 import './HomePage.css';
 
 export default function HomePage() {
+  const [loading, setLoading] = useState<boolean>(true);
   const [history, setHistory] = useState<IBeanHistoryModel[]>([]);
   const [ticker, setTicker] = useState<IMovementModel[]>([]);
   const [showMarquee, setShowMarquee] = useState<boolean>(true);
@@ -25,8 +27,9 @@ export default function HomePage() {
     async function doLoadHistory() {
       const ret = await getAllBeanHistory(7);
       setHistory(ret);
+      setLoading(false);
     }
-
+    setLoading(true);
     doLoadTicker();
     doLoadHistory();
   }, []);
@@ -70,14 +73,21 @@ export default function HomePage() {
         />
       )}
       <div className="content">
-        <div className="chartcontainer">
-          {history &&
-            history.map((x) => (
-              <div key={x.beanId}>
-                <BeanChartWidget history={x} onClick={beanClicked} />
-              </div>
-            ))}
-        </div>
+        {loading && (
+          <div className="loading">
+            <Spinner /> Loading...
+          </div>
+        )}
+        {!loading && (
+          <div className="chartcontainer">
+            {history &&
+              history.map((x) => (
+                <div key={x.beanId}>
+                  <BeanChartWidget history={x} onClick={beanClicked} />
+                </div>
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );
