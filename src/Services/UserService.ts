@@ -5,6 +5,8 @@ import { http, HttpResponse } from './http';
 import { createApiResponse } from './tools';
 import { ILeaderboardEntry } from '../Interfaces/ILeaderboardEntry';
 
+const DEFAULT_STARTING_BALANCE: number = 1000.0;
+
 export async function getUsers(): Promise<IUserModel[]> {
   const result = await http<IUserModel[]>({
     path: '/User',
@@ -41,6 +43,9 @@ export async function GetUserModel(
   startingBalance: number,
   token?: string,
 ): Promise<IUserModel | null> {
+  if (!startingBalance) {
+    startingBalance = DEFAULT_STARTING_BALANCE;
+  }
   if (email) {
     const result = await http<IUserModel>({
       path: `/User/ByEmail/${encodeURIComponent(email)}`,
@@ -53,6 +58,9 @@ export async function GetUserModel(
       // need to update user with identifier
       const updatedUser = result.body;
       updatedUser.identifier = identifier;
+      if (!updatedUser.balance) {
+        updatedUser.balance = startingBalance;
+      }
       const updateResult = await http<IUserModel, IUserModel>({
         path: '/User/UpdateIdentifier',
         method: 'put',
