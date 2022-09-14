@@ -1,10 +1,14 @@
-import {http} from './http';
-import {IMovementModel} from '../Interfaces/IMovementModel';
+import { http } from './http';
+import { IMovementModel } from '../Interfaces/IMovementModel';
+import { DefaultHistoryDays } from '../AppSettings';
 
-export async function getMovements(beanid: string): Promise<IMovementModel[]> {
+export async function getMovements(
+  beanid: string,
+  days: number = DefaultHistoryDays,
+): Promise<IMovementModel[]> {
   if (beanid) {
     const response = await http<IMovementModel[]>({
-      path: `/Movement/ForBean/${beanid}`,
+      path: `/Movement/ForBean/${beanid}/${days}`,
     });
     if (response && response.ok && response.body) {
       return response.body;

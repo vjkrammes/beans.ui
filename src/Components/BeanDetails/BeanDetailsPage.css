@@ -1,20 +1,29 @@
 .bdp__chartcontainer {
-    display: flex;
-    justify-content: center;
-    margin-block: 1rem;
-    padding-block: 1rem;
-    border: 1px solid var(--base-color);
-    border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin-block: 1rem;
+  padding-block: 1rem;
+  border: 1px solid var(--base-color);
+  border-radius: 10px;
+}
+
+.bdp__selectcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 .bdp__combocontainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin-bottom: 1rem;
 }
 
-.bdp__beanlist {
-    width: 100px;
+.bdp__beanlist,
+.bdp__dayslist {
+  width: 100px;
 }

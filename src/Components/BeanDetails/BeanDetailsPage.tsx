@@ -19,12 +19,14 @@ import MovementChartWidget from '../Widgets/Movement/MovementChartWidget';
 import PageHeader from '../Widgets/Page/PageHeader';
 import Spinner from '../Widgets/Spinner/Spinner';
 import './BeanDetailsPage.css';
+import { DefaultHistoryDays } from '../../AppSettings';
 
 export default function BeanDetailsPage() {
   const { beanId } = useParams();
   const [beans, setBeans] = useState<IBeanModel[]>([]);
   const [bean, setBean] = useState<IBeanModel | null>(null);
   const [movements, setMovements] = useState<IMovementModel[]>([]);
+  const [days, setDays] = useState<number>(DefaultHistoryDays);
   const navigate = useNavigate();
   useEffect(() => {
     async function doLoadBeans() {
@@ -42,16 +44,25 @@ export default function BeanDetailsPage() {
   }, [beanId]);
   useEffect(() => {
     async function doLoadMovements() {
-      const m = await getMovements(beanId || '');
+      const m = await getMovements(beanId || '', days);
       setMovements(m);
     }
 
     doLoadMovements();
-  }, [beanId]);
+  }, [beanId, days]);
 
   function beanChanged(e: ChangeEvent<HTMLSelectElement>) {
     if (e && e.target && e.target.value) {
       navigate(`/BeanDetails/${e.target.value}`);
+    }
+  }
+
+  function daysChanged(e: ChangeEvent<HTMLSelectElement>) {
+    if (e && e.target && e.target.value) {
+      const d = Number(e.target.value);
+      if (d > 0) {
+        setDays(d);
+      }
     }
   }
 
@@ -93,18 +104,44 @@ export default function BeanDetailsPage() {
       {bean && (
         <div className="content">
           <div className="bdp__combocontainer">
-            <div>Select a different Bean:</div>
-            <select
-              className="bdp__beanlist"
-              value={bean?.id}
-              onChange={beanChanged}
-            >
-              {beans.map((x) => (
-                <option key={x.id} value={x.id}>
-                  {x.name}
+            <div className="bdp__selectcontainer">
+              <div>Select a different Bean:</div>
+              <select
+                className="bdp__beanlist"
+                value={bean?.id}
+                onChange={beanChanged}
+              >
+                {beans.map((x) => (
+                  <option key={x.id} value={x.id}>
+                    {x.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="bdp__selectcontainer">
+              <div>Select Days of History:</div>
+              <select
+                className="bdp__dayslist"
+                value={days}
+                onChange={daysChanged}
+              >
+                <option key="7" value="7">
+                  7
                 </option>
-              ))}
-            </select>
+                <option key="15" value="15">
+                  15
+                </option>
+                <option key="30" value="30">
+                  30
+                </option>
+                <option key="60" value="60">
+                  60
+                </option>
+                <option key="90" value="90">
+                  90
+                </option>
+              </select>
+            </div>
           </div>
           <div className="bdp__chartcontainer">
             <MovementChartWidget movements={movements} />
