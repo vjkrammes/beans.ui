@@ -1,5 +1,5 @@
-export const server = 'https://localhost:5011/';
-//export const server = 'https://beansapi.azurewebsites.net/';
+//export const server = 'https://localhost:5011/';
+export const server = 'https://beansapi.azurewebsites.net/';
 
 export const ApiBase = `${server}api/v1`;
 
